@@ -1,7 +1,6 @@
 package bikeShop;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -20,6 +19,14 @@ public class BikeShopSystem implements Serializable{
 		this.inventory = new ArrayList<Item>();
 		this.customers = new HashSet<Customer>();
 	}
+	public HashSet<Customer> getCustomers()
+	{
+		return this.customers;
+	}
+	public ArrayList<Item> getInventory()
+	{
+		return this.inventory;
+	}
 	public void addItemToInventory(Item itemToAdd)
 	{
 		inventory.add(itemToAdd);
@@ -28,24 +35,56 @@ public class BikeShopSystem implements Serializable{
 	{
 		inventory.remove(item);
 	}
-	public void newCustomer(String name)
+	public boolean newCustomer(String name)
 	{
-		customers.add(new Customer(name));
+		if(name.split(" ").length == 2)
+		{
+			customers.add(new Customer(name));
+			return true;
+		}
+		else
+		{
+			return false; //must supply a first and last name.
+		}
 	}
-	public void saveShopState() throws IOException
+	public void saveShopState()
 	{
-		FileOutputStream file = new FileOutputStream("state.ser");
-		ObjectOutputStream out = new ObjectOutputStream(file);
-		out.writeObject(this);
-		file.close();
-		out.close();
+		FileOutputStream file;
+		ObjectOutputStream out;
+		try
+		{
+			file = new FileOutputStream("state.ser");
+			out = new ObjectOutputStream(file);
+			out.writeObject(this);
+			file.close();
+			out.close();
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		}
 	}
-	public void loadShopState() throws IOException, ClassNotFoundException
+	public static BikeShopSystem loadShopState()
 	{
-		FileInputStream file = new FileInputStream("state.ser");
-        ObjectInputStream in = new ObjectInputStream(file);
-        BikeShopSystem systemToLoad = (BikeShopSystem)in.readObject();
-        in.close();
-        file.close();
+		FileInputStream file;
+		ObjectInputStream in;
+		BikeShopSystem systemToLoad = new BikeShopSystem();
+		try
+		{
+			file = new FileInputStream("state.ser");
+	        in = new ObjectInputStream(file);
+	        systemToLoad = (BikeShopSystem)in.readObject();
+	        in.close();
+	        file.close();
+		}
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        catch (ClassNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+		return systemToLoad;
 	}
 }

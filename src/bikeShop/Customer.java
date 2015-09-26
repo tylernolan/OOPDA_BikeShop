@@ -34,4 +34,8 @@ public class Customer implements Serializable{
 	public void setAccountBalance(double accountBalance) {
 		this.accountBalance = accountBalance;
 	}
+	@Override public String toString()
+	{
+		return this.name;
+	}
 }

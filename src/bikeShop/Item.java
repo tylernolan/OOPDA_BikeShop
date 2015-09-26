@@ -40,5 +40,9 @@ public class Item implements Serializable{
 	public void setRenteeItem(Customer rentee) {
 		this.rentee = rentee;
 	}
+	@Override public String toString()
+	{
+		return this.name;
+	}
 
 }
