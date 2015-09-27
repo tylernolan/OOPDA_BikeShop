@@ -9,6 +9,8 @@ public class Customer implements Serializable{
 	private String name;
 	private ArrayList<Item> rentedItems;
 	private double accountBalance;
+	private ArrayList<Item> purchaseHistory;
+	
 	public Customer(String name) {
 		super();
 		this.name = name;
@@ -17,6 +19,14 @@ public class Customer implements Serializable{
 	}
 	public String getName() {
 		return name;
+	}
+	public void purchaseItem(Item item)
+	{
+		purchaseHistory.add(item);
+	}
+	public ArrayList<Item> getPurchaseHistory()
+	{
+		return this.purchaseHistory;
 	}
 	public void setName(String name) {
 		this.name = name;

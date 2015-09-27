@@ -31,8 +31,9 @@ public class BikeShopSystem implements Serializable{
 	{
 		inventory.add(itemToAdd);
 	}
-	public void sellItem(Item item)
+	public void sellItem(Customer customer, Item item)
 	{
+		customer.purchaseItem(item);
 		inventory.remove(item);
 	}
 	public boolean newCustomer(String name)
