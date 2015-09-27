@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
 
 public class Customer implements Serializable{
 
@@ -21,6 +22,19 @@ public class Customer implements Serializable{
 	public String getName() {
 		return name;
 	}
+	private long getDateDifference(Date startDate, Date endDate)
+	{
+		return TimeUnit.DAYS.convert(startDate.getTime()-endDate.getTime(), TimeUnit.MILLISECONDS);
+	}
+	public double returnItem(Item item)
+	{
+		Date rentedDate = rentedItems.get(item);
+		long timeSinceRented = getDateDifference(rentedDate, new Date());
+		double amountDue = timeSinceRented * item.getDailyRentalFee();
+		this.accountBalance -= item.getRentalDeposit();
+		return amountDue;
+		
+	}
 	public void purchaseItem(Item item)
 	{
 		purchaseHistory.add(item);
@@ -37,6 +51,7 @@ public class Customer implements Serializable{
 	}
 	public void rentItem(Item item)
 	{
+		this.accountBalance += item.getRentalDeposit(); //the deposit goes into account balance as a positive number.
 		Date currentDate = new Date();
 		rentedItems.put(item, currentDate);
 	}

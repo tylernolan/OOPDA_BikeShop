@@ -6,17 +6,17 @@ public class Item implements Serializable{
 
 	private static final long serialVersionUID = 43934718897464571L;
 	private double dailyRentalFee;
-	private double dailyRentalCharge;
+	private double rentalDeposit;
 	private double price;
 	private boolean isRented;
 	private Customer rentee;
 	private String name;
 	
-	public Item(double dailyRentalFee, double dailyRentalCharge, double price, String name)
+	public Item(double dailyRentalFee, double RentalCharge, double price, String name)
 	{
 		this.isRented = false;
 		this.dailyRentalFee = dailyRentalFee;
-		this.dailyRentalCharge = dailyRentalCharge;
+		this.rentalDeposit = RentalCharge;
 		this.name = name;
 		this.price = price;
 	}
@@ -34,7 +34,7 @@ public class Item implements Serializable{
 	}
 	public double getPrice()
 	{
-		return this.getPrice();
+		return this.price;
 	}
 	public double getDailyRentalFee() {
 		return dailyRentalFee;
@@ -44,12 +44,12 @@ public class Item implements Serializable{
 		this.dailyRentalFee = dailyRentalFee;
 	}
 
-	public double getDailyRentalCharge() {
-		return dailyRentalCharge;
+	public double getRentalDeposit() {
+		return rentalDeposit;
 	}
 
-	public void setDailyRentalCharge(double dailyRentalCharge) {
-		this.dailyRentalCharge = dailyRentalCharge;
+	public void setRentalDeposit(double rentalDeposit) {
+		this.rentalDeposit = rentalDeposit;
 	}
 
 	public Customer getRentee() {

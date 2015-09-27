@@ -19,6 +19,7 @@ public class BikeShopSystem implements Serializable{
 		this.inventory = new ArrayList<Item>();
 		this.customers = new HashSet<Customer>();
 	}
+
 	public HashSet<Customer> getCustomers()
 	{
 		return this.customers;
