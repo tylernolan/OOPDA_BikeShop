@@ -7,19 +7,29 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 
 public class BikeShopSystem implements Serializable{
 	private static final long serialVersionUID = -7876747047024597307L;
 	private ArrayList<Item> inventory;
 	private HashSet<Customer> customers;
+	private ArrayList<Rental> ongoingRentals;
 	
 	public BikeShopSystem()
 	{
 		this.inventory = new ArrayList<Item>();
 		this.customers = new HashSet<Customer>();
+		this.ongoingRentals = new ArrayList<Rental>();
 	}
-
+	public Rental generateRental(Customer rentee, Item item, int rentalTerm)
+	{
+		Rental rental =  new Rental(rentee, item, rentalTerm, new Date());
+		rentee.rentItem(item, rental);
+		this.ongoingRentals.add(rental);
+		return rental;
+		
+	}
 	public HashSet<Customer> getCustomers()
 	{
 		return this.customers;
