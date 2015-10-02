@@ -26,7 +26,6 @@ public class Customer implements Serializable{
 		double amountDue = rental.getAmountOwed();
 		this.accountBalance -= item.getRentalDeposit();
 		return amountDue;
-		
 	}
 	public void purchaseItem(Item item)
 	{
