@@ -2,7 +2,7 @@ package bikeShop;
 
 import java.io.Serializable;
 
-public class Item implements Serializable{
+public abstract class Item implements Serializable{
 
 	private static final long serialVersionUID = 43934718897464571L;
 	private double dailyRentalFee;

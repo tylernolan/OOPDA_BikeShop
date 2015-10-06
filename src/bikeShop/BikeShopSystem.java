@@ -8,6 +8,7 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
 
 public class BikeShopSystem implements Serializable{
@@ -22,6 +23,11 @@ public class BikeShopSystem implements Serializable{
 		this.customers = new HashSet<Customer>();
 		this.ongoingRentals = new ArrayList<Rental>();
 	}
+	public Receipt generateReceipt(HashMap<Item, Integer> items)
+	{
+		Receipt receipt = new Receipt(items);
+		return receipt;
+	}
 	public Rental generateRental(Customer rentee, Item item, int rentalTerm)
 	{
 		Rental rental =  new Rental(rentee, item, rentalTerm, new Date());
@@ -29,6 +35,11 @@ public class BikeShopSystem implements Serializable{
 		this.ongoingRentals.add(rental);
 		return rental;
 		
+	}
+	public Order orderBikes(HashMap<Item, Integer> thingsToOrder)
+	{
+		Order order = new Order(thingsToOrder);
+		return order;
 	}
 	public HashSet<Customer> getCustomers()
 	{
