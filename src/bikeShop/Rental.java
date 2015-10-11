@@ -12,6 +12,18 @@ public class Rental implements Serializable{
 	private Item item;
 	private Date timeOfRental;
 	private Date timeItemIsDue;
+	/**
+	 * constant for the amount extra the customer is charged for returning the item late.
+	 */
+	public static final double LATECHARGE = 1.5;
+	
+	/**
+	 * constructor for rental objects
+	 * @param rentee person renting the item
+	 * @param item the item being rented
+	 * @param rentalTerm the specified term for the rental
+	 * @param timeOfRental
+	 */
 	public Rental(Customer rentee, Item item, int rentalTerm, Date timeOfRental) {
 		this.rentee = rentee;
 		this.item = item;
@@ -22,6 +34,10 @@ public class Rental implements Serializable{
 	{
 		return TimeUnit.DAYS.convert(startDate.getTime()-endDate.getTime(), TimeUnit.MILLISECONDS);
 	}
+	/**
+	 * returns the amount the customer owes for the rental.
+	 * @return the amount owed.
+	 */
 	public double getAmountOwed()
 	{
 		double rate = item.getDailyRentalFee();
@@ -29,11 +45,15 @@ public class Rental implements Serializable{
 		double amountDue = timeSinceRented * rate;
 		if(isOverdue())
 		{
-			amountDue *= 1.5; //50% late fee
+			amountDue *= LATECHARGE; //50% late fee
 		}
 		return amountDue;
 		
 	}
+	/**
+	 * 
+	 * @return true if the item is overdue
+	 */
 	public boolean isOverdue()
 	{
 		return timeItemIsDue.before(new Date());
