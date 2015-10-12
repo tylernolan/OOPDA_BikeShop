@@ -1,10 +1,11 @@
 package bikeShop;
 
 import java.util.HashMap;
-
+/**
+ * Class for a hashmap of orders
+ */
 public class Order {
 	private HashMap<Item, Integer> itemsToOrder = new HashMap<>();
-	
 	public Order()
 	{
 		
@@ -13,6 +14,11 @@ public class Order {
 	{
 		this.itemsToOrder = itemsToOrder;
 	}
+	/**
+	 * increments the quantity of the item by the quantity specified.
+	 * @param item the item you'd like to increase the quantity of
+	 * @param quantity the quantity you'd like to increase by.
+	 */
 	public void addItemToOrder(Item item, int quantity)
 	{
 		for (Item i : itemsToOrder.keySet())

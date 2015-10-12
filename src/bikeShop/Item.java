@@ -11,7 +11,13 @@ public abstract class Item implements Serializable{
 	private boolean isRented;
 	private Customer rentee;
 	private String name;
-	
+	/**
+	 * Abstract class for items in the bike shop
+	 * @param dailyRentalFee the fee to rent the item per day
+	 * @param RentalCharge the cost of renting the item up front
+	 * @param price the price of purchasing the item
+	 * @param name the name of the item
+	 */
 	public Item(double dailyRentalFee, double RentalCharge, double price, String name)
 	{
 		this.isRented = false;
