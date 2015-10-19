@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 
-public class RentItemPanel extends JFrame{
+public class RentItemPanel extends JPanel{
 	private JComboBox customers, items;
 	private Item selectedItem;
 	private Customer selectedCustomer;
@@ -30,13 +30,22 @@ public class RentItemPanel extends JFrame{
 		itemPanel.add(myLabel2);
 		itemPanel.add(items);
 		
+		JPanel termPanel = new JPanel();
 		rentalTermBox = new JTextField();
+		JLabel myLabel3 = new JLabel("Rental Term: ");
+		
+		termPanel.add(rentalTermBox);
+		termPanel.add(myLabel3);
+		
 		this.bss = bss;
 		rentButton = new JButton("Rent Item");
-		
+		rentButton.addActionListener(new RentButtonListener());
 		this.setLayout(new FlowLayout());
 		this.add(customerPanel);
 		this.add(itemPanel);
+		this.add(rentalTermBox);
+		this.add(rentButton);
+		
 	}
 	
 	private class RentButtonListener implements ActionListener
