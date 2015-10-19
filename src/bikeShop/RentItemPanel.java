@@ -31,7 +31,7 @@ public class RentItemPanel extends JPanel{
 		itemPanel.add(items);
 		
 		JPanel termPanel = new JPanel();
-		rentalTermBox = new JTextField();
+		rentalTermBox = new JTextField(5);
 		JLabel myLabel3 = new JLabel("Rental Term: ");
 		
 		termPanel.add(rentalTermBox);
