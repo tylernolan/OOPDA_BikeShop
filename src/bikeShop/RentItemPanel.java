@@ -34,8 +34,8 @@ public class RentItemPanel extends JPanel{
 		rentalTermBox = new JTextField(5);
 		JLabel myLabel3 = new JLabel("Rental Term: ");
 		
-		termPanel.add(rentalTermBox);
 		termPanel.add(myLabel3);
+		termPanel.add(rentalTermBox);
 		
 		this.bss = bss;
 		rentButton = new JButton("Rent Item");
@@ -43,7 +43,7 @@ public class RentItemPanel extends JPanel{
 		this.setLayout(new FlowLayout());
 		this.add(customerPanel);
 		this.add(itemPanel);
-		this.add(rentalTermBox);
+		this.add(termPanel);
 		this.add(rentButton);
 		
 	}
