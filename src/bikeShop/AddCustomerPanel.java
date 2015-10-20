@@ -27,7 +27,10 @@ public class AddCustomerPanel extends JPanel{
 	{
 		public void actionPerformed(ActionEvent e)
 		{
-			bss.newCustomer(nameField.getText());
+			if(!bss.newCustomer(nameField.getText()))
+			{
+				JOptionPane.showMessageDialog(null, "Invalid name, please supply both a first and last name", "Invalid Name", JOptionPane.ERROR_MESSAGE);
+			}
 			
 		}
 	}
