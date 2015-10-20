@@ -17,6 +17,10 @@ public class MasterGUI extends JFrame {
 		sip = new SellItemPanel(bss);
 		acp = new AddCustomerPanel(bss);
 		rip = new RentItemPanel(bss);
+		//slp = new SaveLoadPanel(bss); //panel with options for serialization
+		//arp = new ActiveReceiptPanel(bss); //panel with checkout button, textbox with active receipt.
+		//oip = new OrderItemPanel(bss); //panel for ordering new items for the inventory.
+		//cvp = new CustomerViewerPanel(bss); //panel for viewing customer data, rentals, balance, etc.
 		tp.addTab("Sell Item", sip);
 		tp.addTab("Rent Item", rip);
 		tp.addTab("Add Customer", acp);
@@ -26,6 +30,8 @@ public class MasterGUI extends JFrame {
 			{
 				sip.update();
 				rip.update();
+				//arp.update();
+				//cvp.update();
 			}
 		};
 		tp.addChangeListener(changeListener);
