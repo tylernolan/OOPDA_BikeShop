@@ -68,6 +68,10 @@ public class Rental implements Serializable{
 	public Customer getRentee() {
 		return rentee;
 	}
+	public Date getDueDate()
+	{
+		return this.timeItemIsDue;
+	}
 	public void setRentee(Customer rentee) {
 		this.rentee = rentee;
 	}

@@ -8,7 +8,8 @@ import javax.swing.*;
 
 public class SellItemPanel extends JPanel {
 	
-	private JComboBox customers, items;
+	private JComboBox<Customer> customers;
+	private JComboBox<Item> items;
 	private BikeShopSystem bss;
 	private JButton sellButton;
 	private Item selectedItem;
@@ -21,6 +22,7 @@ public class SellItemPanel extends JPanel {
 		JPanel customerPanel = new JPanel();
 		JLabel customerLabel = new JLabel("Customers: ");
 		customers = new JComboBox(bss.getCustomers().toArray());
+		customers.setModel(new DefaultComboBoxModel(bss.getCustomers().toArray()));
 		
 		customerPanel.add(customerLabel);
 		customerPanel.add(customers);

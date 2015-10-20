@@ -20,6 +20,7 @@ public class BikeShopSystem implements Serializable{
 	private ArrayList<Item> inventory;
 	private HashSet<Customer> customers;
 	private ArrayList<Rental> ongoingRentals;
+	private Receipt currentReceipt;
 	/**
 	 * default constructor, initializes empty ArrayLists for inventory and ongoing rentals, and an empty HashSet for a list of customers.
 	 */
@@ -49,7 +50,9 @@ public class BikeShopSystem implements Serializable{
 	 */
 	public Rental generateRental(Customer rentee, Item item, int rentalTerm)
 	{
+		if (this.currentReceipt == null) this.currentReceipt = new Receipt(rentee);
 		Rental rental =  new Rental(rentee, item, rentalTerm, new Date());
+		currentReceipt.addRentalItem(rental);
 		rentee.rentItem(item, rental);
 		this.ongoingRentals.add(rental);
 		return rental;
@@ -82,12 +85,24 @@ public class BikeShopSystem implements Serializable{
 		inventory.add(itemToAdd);
 	}
 	/**
+	 * Call after completing a sale.
+	 * @return the sales receipt for the customer
+	 */
+	public Receipt checkout()
+	{
+		Receipt ret = currentReceipt;
+		this.currentReceipt = null;
+		return ret;
+	}
+	/**
 	 * sells an item to the specified customer
 	 * @param customer the customer buying the item
 	 * @param item the item being purchased.
 	 */
 	public void sellItem(Customer customer, Item item)
 	{
+		if (this.currentReceipt == null) this.currentReceipt = new Receipt(customer);
+		this.currentReceipt.addSaleItem(item);
 		customer.purchaseItem(item);
 		inventory.remove(item);
 	}
@@ -101,6 +116,7 @@ public class BikeShopSystem implements Serializable{
 		if(name.split(" ").length == 2)
 		{
 			customers.add(new Customer(name));
+			System.out.println(customers);
 			return true;
 		}
 		else

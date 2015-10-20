@@ -4,15 +4,15 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 import java.awt.*;
-public class addCustomerPanel extends JPanel{
+public class AddCustomerPanel extends JPanel{
 	private JTextField nameField;
 	private BikeShopSystem bss;
 	
-	public addCustomerPanel(BikeShopSystem bss)
+	public AddCustomerPanel(BikeShopSystem bss)
 	{
 		this.bss = bss;
 		JPanel namePanel = new JPanel();
-		nameField = new JTextField();
+		nameField = new JTextField(10);
 		JLabel nameLabel = new JLabel("Name: ");
 		namePanel.add(nameLabel);
 		namePanel.add(nameField);
