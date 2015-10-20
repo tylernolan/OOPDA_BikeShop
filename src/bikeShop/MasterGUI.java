@@ -10,6 +10,7 @@ public class MasterGUI extends JFrame {
 		this.bss = bss;
 		JTabbedPane tp = new JTabbedPane();
 		
+		tp.addTab("Sell Item", new SellItemPanel(bss));
 		tp.addTab("Rent Item", new RentItemPanel(bss));
 		tp.addTab("Add Customer", new addCustomerPanel(bss));
 		this.add(tp);
