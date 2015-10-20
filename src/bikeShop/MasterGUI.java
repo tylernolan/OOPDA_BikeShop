@@ -11,6 +11,7 @@ public class MasterGUI extends JFrame {
 		JTabbedPane tp = new JTabbedPane();
 		
 		tp.addTab("Rent Item", new RentItemPanel(bss));
+		tp.addTab("Add Customer", new addCustomerPanel(bss));
 		this.add(tp);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		pack();
