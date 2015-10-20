@@ -21,16 +21,14 @@ public class MasterGUI extends JFrame {
 		tp.addTab("Rent Item", rip);
 		tp.addTab("Add Customer", acp);
 		this.add(tp);
-		//ChangeListener changeListener = new ChangeListener(){
-		//	public void stateChanged(ChangeEvent changeEvent)
-		//	{
-		//		sip = new SellItemPanel(bss);
-		//		acp = new AddCustomerPanel(bss);
-		//		rip = new RentItemPanel(bss);
-		//		pack();
-		//	}
-		//};
-		//tp.addChangeListener(changeListener);
+		ChangeListener changeListener = new ChangeListener(){
+			public void stateChanged(ChangeEvent changeEvent)
+			{
+				sip.update();
+				rip.update();
+			}
+		};
+		tp.addChangeListener(changeListener);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		pack();
 		setVisible(true);

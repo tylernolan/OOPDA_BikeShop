@@ -18,10 +18,10 @@ public class SellItemPanel extends JPanel {
 	private ButtonGroup bg;
 	
 	public SellItemPanel(BikeShopSystem bss) {
-				
+		this.bss = bss;
 		JPanel customerPanel = new JPanel();
 		JLabel customerLabel = new JLabel("Customers: ");
-		customers = new JComboBox(bss.getCustomers().toArray());
+		customers = new JComboBox();//bss.getCustomers().toArray());
 		customers.setModel(new DefaultComboBoxModel(bss.getCustomers().toArray()));
 		
 		customerPanel.add(customerLabel);
@@ -44,6 +44,17 @@ public class SellItemPanel extends JPanel {
 		add(customerPanel);
 		add(itemPanel);
 		add(sellButton);
+	}
+	public void update()
+	{
+		customers.removeAllItems();
+		for (Customer c : bss.getCustomers()){
+			customers.addItem(c);
+		}
+		items.removeAllItems();
+		for (Item i : bss.getInventory()){
+			items.addItem(i);
+		}
 	}
 		private class SellButtonListener implements ActionListener
 		{

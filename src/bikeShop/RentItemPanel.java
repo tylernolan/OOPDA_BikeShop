@@ -47,6 +47,17 @@ public class RentItemPanel extends JPanel{
 		this.add(rentButton);
 		
 	}
+	public void update()
+	{
+		customers.removeAllItems();
+		for (Customer c : bss.getCustomers()){
+			customers.addItem(c);
+		}
+		items.removeAllItems();
+		for (Item i : bss.getInventory()){
+			items.addItem(i);
+		}
+	}
 	
 	private class RentButtonListener implements ActionListener
 	{
