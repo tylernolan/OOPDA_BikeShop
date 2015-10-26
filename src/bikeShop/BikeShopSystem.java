@@ -144,6 +144,10 @@ public class BikeShopSystem implements Serializable{
 			e.printStackTrace();
 		}
 	}
+	public Receipt getCurrentReceipt()
+	{
+		return this.currentReceipt;
+	}
 	/**
 	 * loads a BikeShopSystem object from state.ser
 	 * @return the BikeShopSystem object stored in state.ser
