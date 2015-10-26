@@ -12,9 +12,9 @@ public class Customer implements Serializable{
 
 	private static final long serialVersionUID = -8470427709741950885L;
 	private String name;
-	private HashMap<Item, Rental> rentedItems;
+	private HashMap<Item, Rental> rentedItems = new HashMap<>();
 	private double accountBalance;
-	private ArrayList<Item> purchaseHistory;
+	private ArrayList<Item> purchaseHistory = new ArrayList<>();
 	/**
 	 * 
 	 * @param name the customer's name
