@@ -3,7 +3,7 @@ import javax.swing.*;
 
 import java.awt.*;
 import java.awt.event.*;
-public class ActiveReceiptPanel extends JPanel{
+public class ActiveReceiptPanel extends JPanel implements Updateable{
 	JTextPane receiptBox = new JTextPane();
 	JButton checkoutButton = new JButton();
 	BikeShopSystem bss;
@@ -28,15 +28,17 @@ public class ActiveReceiptPanel extends JPanel{
 			receiptBox.setText("");
 		}
 	}
-	public void update()
+	public void update(BikeShopSystem bss)
 	{
 		setText();
+		this.bss = bss;
 	}
 	public class checkoutListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent e)
 		{
-			bss.checkout();
+			Receipt receipt = bss.checkout(); //maybe do something here to make a log of old receipts.
+			update(bss);
 		}
 	}
 }

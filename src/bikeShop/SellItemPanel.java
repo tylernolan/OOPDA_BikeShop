@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-public class SellItemPanel extends JPanel {
+public class SellItemPanel extends JPanel implements Updateable{
 	
 	private JComboBox<Customer> customers;
 	private JComboBox<Item> items;
@@ -45,8 +45,9 @@ public class SellItemPanel extends JPanel {
 		add(itemPanel);
 		add(sellButton);
 	}
-	public void update()
+	public void update(BikeShopSystem bss)
 	{
+		this.bss = bss;
 		customers.removeAllItems();
 		for (Customer c : bss.getCustomers()){
 			customers.addItem(c);

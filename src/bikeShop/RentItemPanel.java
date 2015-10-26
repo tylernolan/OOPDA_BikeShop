@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 
-public class RentItemPanel extends JPanel{
+public class RentItemPanel extends JPanel implements Updateable{
 	private JComboBox customers, items;
 	private Item selectedItem;
 	private Customer selectedCustomer;
@@ -47,8 +47,9 @@ public class RentItemPanel extends JPanel{
 		this.add(rentButton);
 		
 	}
-	public void update()
+	public void update(BikeShopSystem bss)
 	{
+		this.bss = bss;
 		customers.removeAllItems();
 		for (Customer c : bss.getCustomers()){
 			customers.addItem(c);
