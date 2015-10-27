@@ -8,16 +8,14 @@ import java.util.HashMap;
 import javax.swing.*;
 
 
-public class OrderItemPanel extends JFrame{
+public class OrderItemPanel extends JPanel{
 	
 	
 	private JPanel itemPanel;
 	private JComboBox<Item> items;
 	private BikeShopSystem bss;
-	private JButton orderButton;
 	private JTextField quantityToAdd;
 	private Item selectedItem;
-	private JTextField itemList;
 	private JButton submitButton;
 	private JComboBox itemsAvailable;
 	
@@ -28,8 +26,7 @@ public class OrderItemPanel extends JFrame{
 		
 		JPanel quantityPanel = new JPanel();
 		JLabel quantityLabel = new JLabel("Quantity: ");
-		quantityToAdd = new JTextField();
-		
+		quantityToAdd = new JTextField(5);
 		
 		
 		quantityPanel.add(quantityLabel);
@@ -44,15 +41,12 @@ public class OrderItemPanel extends JFrame{
 		itemPanel.add(itemsAvailable);
 		
 		
-		orderButton = new JButton("Order item");
-		orderButton.addActionListener(new OrderButtonListener());
-		
-		submitButton = new JButton("Submit order");
+		submitButton = new JButton("Submit");
 		submitButton.addActionListener(new SubmitButtonListener());
 		
 		setLayout(new BorderLayout());
-		JFrame centerFrame = new JFrame();
-		centerFrame.add(orderButton);
+		JPanel centerFrame = new JPanel();
+		centerFrame.add(quantityPanel);
 		centerFrame.add(quantityToAdd);
 		centerFrame.add(submitButton);
 		
@@ -61,7 +55,7 @@ public class OrderItemPanel extends JFrame{
 		
 	}
 	
-	private class OrderButtonListener implements ActionListener
+	private class SubmitButtonListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent e)
 		{
@@ -75,13 +69,6 @@ public class OrderItemPanel extends JFrame{
 		}
 	}
 	
-	private class SubmitButtonListener implements ActionListener
-	{
-		public void actionPerformed(ActionEvent e)
-		{
-			
-		}
-	}
 	
 	
 	
