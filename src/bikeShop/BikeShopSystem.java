@@ -138,11 +138,16 @@ public class BikeShopSystem implements Serializable{
 			out.writeObject(this);
 			file.close();
 			out.close();
+			System.out.println("save success");
 		}
 		catch (IOException e)
 		{
 			e.printStackTrace();
 		}
+	}
+	public Receipt getCurrentReceipt()
+	{
+		return this.currentReceipt;
 	}
 	/**
 	 * loads a BikeShopSystem object from state.ser
@@ -169,6 +174,7 @@ public class BikeShopSystem implements Serializable{
         {
             e.printStackTrace();
         }
+		System.out.println(systemToLoad.getCustomers());
 		return systemToLoad;
 	}
 }

@@ -9,10 +9,10 @@ import java.util.HashSet;
  *
  */
 public class Receipt {
-	private HashMap<Item, Integer> items;
+	private HashMap<Item, Integer> items = new HashMap<>();
 	private double totalPrice;
 	private Customer customer;
-	private HashSet<Rental> rentItems;
+	private HashSet<Rental> rentItems = new HashSet<>();
 	/**
 	 * creates a receipt object
 	 * @param items the items in the customer's purchase

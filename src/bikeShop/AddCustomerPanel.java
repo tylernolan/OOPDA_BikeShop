@@ -4,7 +4,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 import java.awt.*;
-public class AddCustomerPanel extends JPanel{
+public class AddCustomerPanel extends JPanel implements Updateable{
 	private JTextField nameField;
 	private BikeShopSystem bss;
 	
@@ -22,6 +22,10 @@ public class AddCustomerPanel extends JPanel{
 		
 		this.add(namePanel);
 		this.add(addButton);
+	}
+	public void update(BikeShopSystem bss)
+	{
+		this.bss = bss;
 	}
 	private class AddCustomerButtonListener implements ActionListener
 	{
