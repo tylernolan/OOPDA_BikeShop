@@ -32,14 +32,26 @@ public class BikeShopSystem implements Serializable{
 	}
 	/**
 	 * Generates a receipt object 
+	 * @deprecated
 	 * @param items the items in the customer's order
 	 * @param customer the customer purchasing the item
 	 * @return the receipt object
 	 */
-	public Receipt generateReceipt(HashMap<Item, Integer> items, Customer customer)
+	public Receipt generateReceipt(HashMap<Item, Integer> items, Customer customer) 
 	{
 		Receipt receipt = new Receipt(items, customer);
 		return receipt;
+	}
+	public void returnItem(Customer c, Rental r)
+	{
+		double amtDue = c.returnItem(r);
+		//TODO: this.currentReceipt.ItemReturned()
+	}
+	public Rental rentItem(Customer c, Item i, int term)
+	{
+		Rental r = new Rental(c, i, term);
+		c.rentItem(i, r);
+		return r;
 	}
 	/**
 	 * rents an item to a customer for a term, adds the rental to our arraylist of ongoing rentals. 

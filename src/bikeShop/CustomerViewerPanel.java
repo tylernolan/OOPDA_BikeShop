@@ -1,29 +1,62 @@
 package bikeShop;
 import java.awt.*;
+import java.awt.event.*;
+import java.util.ArrayList;
+
 import javax.swing.*;
-public class CustomerViewerPanel extends JPanel{
-	BikeShopSystem bss;
+public class CustomerViewerPanel extends JPanel implements Updateable{
+	private BikeShopSystem bss;
+	private JComboBox<Rental> customerRentedItems;
+	private JLabel customerName;
+	private JLabel customerBalance;
 	public CustomerViewerPanel(BikeShopSystem bss)
 	{
 		setLayout(new FlowLayout());
 		JComboBox<Customer> customers = new JComboBox(bss.getCustomers().toArray());
 		
 		JFrame customerDataFrame = new JFrame();
-		JLabel customerName = new JLabel("");
-		JLabel customerBalance = new JLabel("");
-		JLabel customerRentedItems = new JLabel("");
+		customerName = new JLabel("");
+		customerBalance = new JLabel("");
+		customerRentedItems = new JComboBox();
+		customerRentedItems.addItemListener(new CustomerBoxListener());
+		
 		customerDataFrame.add(customerName);
 		customerDataFrame.add(customerBalance);
 		customerDataFrame.add(customerRentedItems);
 		
-		this.add(customers);
-		this.add(customerDataFrame)
+		JButton returnItemButton = new JButton("Return Item");
 		
+		this.add(customers);
+		this.add(customerDataFrame);
+		this.add(returnItemButton);
+	}
+	public void update(BikeShopSystem bss)
+	{
+		this.bss = bss;
+		customerRentedItems.removeAllItems();
+		customerName.setText("");
+		customerBalance.setText("");
+	}
+	public class ReturnItemListener implements ActionListener
+	{
+		public void actionPerformed(ActionEvent e)
+		{
+			bss.
+		}
 	}
 	public class CustomerBoxListener implements ItemListener
 	{
-		public void itemStateChanged()
+		public void itemStateChanged(ItemEvent e)
 		{
+			Customer c = (Customer)e.getItem();
+			customerName.setText(c.toString());
+			customerBalance.setText(String.valueOf(c.getAccountBalance()));
+			
+			customerRentedItems.removeAllItems();
+			for (Rental i : c.getRentedItems())
+			{
+				customerRentedItems.addItem(i);
+			}
 			
 		}
 	}
