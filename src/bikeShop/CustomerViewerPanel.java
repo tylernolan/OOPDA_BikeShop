@@ -9,10 +9,11 @@ public class CustomerViewerPanel extends JPanel implements Updateable{
 	private JComboBox<Rental> customerRentedItems;
 	private JLabel customerName;
 	private JLabel customerBalance;
+	private JComboBox<Customer> customers;
 	public CustomerViewerPanel(BikeShopSystem bss)
 	{
 		setLayout(new FlowLayout());
-		JComboBox<Customer> customers = new JComboBox(bss.getCustomers().toArray());
+		customers = new JComboBox(bss.getCustomers().toArray());
 		
 		JFrame customerDataFrame = new JFrame();
 		customerName = new JLabel("");
@@ -41,7 +42,8 @@ public class CustomerViewerPanel extends JPanel implements Updateable{
 	{
 		public void actionPerformed(ActionEvent e)
 		{
-			bss.
+			bss.returnItem((Customer)customers.getSelectedItem(),(Rental)customerRentedItems.getSelectedItem());
+			update(bss);
 		}
 	}
 	public class CustomerBoxListener implements ItemListener
