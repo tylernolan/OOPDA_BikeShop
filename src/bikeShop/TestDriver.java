@@ -9,6 +9,7 @@ public class TestDriver {
 		sys.addItemToInventory(new Bike(10,15,500,"bike", "coolBike2000","2000","0922000",Gender.MALE));
 		sys.addItemToInventory(new Bike(20,25,1000,"fancy bike", "Awesome Bike 2001","2001","0922000",Gender.FEMALE));
 		sys.newCustomer("Tyler Nolan");
+		sys.newCustomer("Dillon Browne");
 		
 		new MasterGUI(sys);
 		sys.saveShopState();

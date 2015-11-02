@@ -37,13 +37,13 @@ public class CustomerViewerPanel extends JPanel implements Updateable{
 		customerName.setText("");
 		customerBalance.setText("");
 	}
-	public class ReturnItemListener implements ActionListener
-	{
-		public void actionPerformed(ActionEvent e)
-		{
-			bss.
-		}
-	}
+	//public class ReturnItemListener implements ActionListener
+	//{
+		//public void actionPerformed(ActionEvent e)
+		//{
+			//bss.
+		//}
+	//}
 	public class CustomerBoxListener implements ItemListener
 	{
 		public void itemStateChanged(ItemEvent e)
