@@ -12,7 +12,7 @@ public class Customer implements Serializable{
 
 	private static final long serialVersionUID = -8470427709741950885L;
 	private String name;
-	private ArrayList<Rental> rentedItems = new ArrayList<>();
+	private HashMap<Item, Rental> rentedItems = new HashMap<>();
 	private double accountBalance;
 	private ArrayList<Item> purchaseHistory = new ArrayList<>();
 	/**
@@ -20,8 +20,8 @@ public class Customer implements Serializable{
 	 * @param name the customer's name
 	 */
 	public Customer(String name) {
-		this.name = name; //TODO: make NameErrorException and have the constructor throw it if the name isn't valid.
-		this.rentedItems = new ArrayList<Rental>();
+		this.name = name; //todo: make NameErrorException and have the constructor throw it if the name isn't valid.
+		this.rentedItems = new HashMap<Item, Rental>();
 		this.accountBalance = 0;
 	}
 	public String getName() {
@@ -32,11 +32,11 @@ public class Customer implements Serializable{
 	 * @param item the item that was rented
 	 * @return returns the amount due
 	 */
-	public double returnItem(Rental r)
+	public double returnItem(Item item)
 	{
-		Rental rental = r;
+		Rental rental = rentedItems.get(item);
 		double amountDue = rental.getAmountOwed();
-		this.accountBalance -= rental.getItem().getRentalDeposit();
+		this.accountBalance -= item.getRentalDeposit();
 		return amountDue;
 	}
 	public void purchaseItem(Item item)
@@ -50,7 +50,7 @@ public class Customer implements Serializable{
 	public void setName(String name) {
 		this.name = name;
 	}
-	public ArrayList<Rental> getRentedItems() {
+	public HashMap<Item, Rental> getRentedItems() {
 		return rentedItems;
 	}
 	/**
@@ -61,7 +61,7 @@ public class Customer implements Serializable{
 	public void rentItem(Item item, Rental rental)
 	{
 		this.accountBalance += item.getRentalDeposit(); //the deposit goes into account balance as a positive number.
-		rentedItems.add(rental);
+		rentedItems.put(item, rental);
 	}
 	public double getAccountBalance() {
 		return accountBalance;

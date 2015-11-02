@@ -13,7 +13,6 @@ public class MasterGUI extends JFrame {
 	RentItemPanel rip;
 	SaveLoadPanel slp;
 	OrderItemPanel oip;
-	CustomerViewerPanel cvp;
 	public MasterGUI(BikeShopSystem bss)
 	{
 		this.bss = bss;
@@ -40,7 +39,7 @@ public class MasterGUI extends JFrame {
 				arp.update(getBSS());
 				acp.update(getBSS());
 				slp.update(getBSS());
-				cvp.update(getBSS());
+				//cvp.update();
 			}
 		};
 		tp.addChangeListener(changeListener);

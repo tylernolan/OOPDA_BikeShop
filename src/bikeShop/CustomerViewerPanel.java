@@ -1,33 +1,32 @@
 package bikeShop;
 import java.awt.*;
-import java.awt.event.*;
-import java.util.ArrayList;
-
 import javax.swing.*;
+<<<<<<< HEAD
 public class CustomerViewerPanel extends JPanel implements Updateable{
 	private BikeShopSystem bss;
 	private JComboBox<Rental> customerRentedItems;
 	private JLabel customerName;
 	private JLabel customerBalance;
 	private JComboBox<Customer> customers;
+=======
+public class CustomerViewerPanel extends JPanel{
+	BikeShopSystem bss;
+>>>>>>> parent of 43b4765... added methods for rentals to BikeShopSystem. Added code to CustomerViewerPanel. Deprecated GenerateReceipt() in bikeshopsystem. Changed the way Rentals are stored in customer objects.
 	public CustomerViewerPanel(BikeShopSystem bss)
 	{
 		setLayout(new FlowLayout());
 		customers = new JComboBox(bss.getCustomers().toArray());
 		
 		JFrame customerDataFrame = new JFrame();
-		customerName = new JLabel("");
-		customerBalance = new JLabel("");
-		customerRentedItems = new JComboBox();
-		customerRentedItems.addItemListener(new CustomerBoxListener());
-		
+		JLabel customerName = new JLabel("");
+		JLabel customerBalance = new JLabel("");
+		JLabel customerRentedItems = new JLabel("");
 		customerDataFrame.add(customerName);
 		customerDataFrame.add(customerBalance);
 		customerDataFrame.add(customerRentedItems);
 		
-		JButton returnItemButton = new JButton("Return Item");
-		
 		this.add(customers);
+<<<<<<< HEAD
 		this.add(customerDataFrame);
 		this.add(returnItemButton);
 	}
@@ -54,21 +53,16 @@ public class CustomerViewerPanel extends JPanel implements Updateable{
 			bss.returnItem((Customer)customers.getSelectedItem(),(Rental)customerRentedItems.getSelectedItem());
 			update(bss);
 		}
+=======
+		this.add(customerDataFrame)
+		
+>>>>>>> parent of 43b4765... added methods for rentals to BikeShopSystem. Added code to CustomerViewerPanel. Deprecated GenerateReceipt() in bikeshopsystem. Changed the way Rentals are stored in customer objects.
 	}
 >>>>>>> a42130c51369f47e3b8cd85f3b97fdf85a5b9f15
 	public class CustomerBoxListener implements ItemListener
 	{
-		public void itemStateChanged(ItemEvent e)
+		public void itemStateChanged()
 		{
-			Customer c = (Customer)e.getItem();
-			customerName.setText(c.toString());
-			customerBalance.setText(String.valueOf(c.getAccountBalance()));
-			
-			customerRentedItems.removeAllItems();
-			for (Rental i : c.getRentedItems())
-			{
-				customerRentedItems.addItem(i);
-			}
 			
 		}
 	}
