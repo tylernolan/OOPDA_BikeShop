@@ -13,6 +13,7 @@ public class Receipt {
 	private double totalPrice;
 	private Customer customer;
 	private HashSet<Rental> rentItems = new HashSet<>();
+	private HashSet<Rental> itemsReturned = new HashSet<>();
 	/**
 	 * creates a receipt object
 	 * @param items the items in the customer's purchase
@@ -26,6 +27,10 @@ public class Receipt {
 	public Receipt(Customer customer)
 	{
 		this.customer = customer;
+	}
+	public void returnItem(Rental rental)
+	{
+		this.itemsReturned.add(rental);
 	}
 	public void addSaleItem(Item item)
 	{
@@ -83,7 +88,22 @@ public class Receipt {
 				retString += i.toString() + "   Deposit Due: $" + i.getItem().getRentalDeposit() + "\n   Return Date: " + i.getDueDate().toString() + "\n";
 				totalDeposit += i.getItem().getRentalDeposit();
 			}
-		retString += "Total: $" + roundDecimal(this.totalPrice) + "\n";
+		if (itemsReturned.size() > 0)
+		{
+			retString += "Returned Items: \n";
+			double rentalCosts = 0;
+			for (Rental rental : itemsReturned)
+			{
+				if (rental.isOverdue())
+				{
+					retString += "Overdue: ";
+				}
+				retString += rental.toString() +" "+ String.valueOf(rental.getAmountOwed())+"\n";
+				rentalCosts += rental.getAmountOwed();
+			}
+		}
+		retString += "Total Purchases: $" + roundDecimal(this.totalPrice) + "\n";
+		retString += 
 		retString += "Deposit Due: $" + roundDecimal(totalDeposit);
 		retString += "\n______________\n";
 		retString += "Thank you for shopping with us, " + this.customer + "\n";
