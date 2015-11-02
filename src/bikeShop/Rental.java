@@ -93,5 +93,9 @@ public class Rental implements Serializable{
 	public void setTimeOfRental(Date timeOfRental) {
 		this.timeOfRental = timeOfRental;
 	}
+	public String toString()
+	{
+		return this.item.toString();
+	}
 	
 }

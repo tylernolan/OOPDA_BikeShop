@@ -45,7 +45,7 @@ public class BikeShopSystem implements Serializable{
 	public void returnItem(Customer c, Rental r)
 	{
 		double amtDue = c.returnItem(r);
-		//TODO: this.currentReceipt.ItemReturned()
+		//TODO: this.currentReceipt.returnItem()
 	}
 	public Rental rentItem(Customer c, Item i, int term)
 	{
