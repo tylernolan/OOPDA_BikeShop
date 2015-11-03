@@ -13,6 +13,7 @@ public class MasterGUI extends JFrame {
 	RentItemPanel rip;
 	SaveLoadPanel slp;
 	OrderItemPanel oip;
+	CustomerViewerPanel cvp;
 	public MasterGUI(BikeShopSystem bss)
 	{
 		this.bss = bss;
@@ -23,7 +24,7 @@ public class MasterGUI extends JFrame {
 		slp = new SaveLoadPanel(bss, this); //panel with options for serialization
 		arp = new ActiveReceiptPanel(bss); //panel with checkout button, textbox with active receipt.
 		oip = new OrderItemPanel(bss); //panel for ordering new items for the inventory.
-		//cvp = new CustomerViewerPanel(bss); //panel for viewing customer data, rentals, balance, etc.
+		cvp = new CustomerViewerPanel(bss); //panel for viewing customer data, rentals, balance, etc.
 		tp.addTab("Order Item", oip);
 		tp.addTab("Sell Item", sip);
 		tp.addTab("Rent Item", rip);
@@ -39,7 +40,7 @@ public class MasterGUI extends JFrame {
 				arp.update(getBSS());
 				acp.update(getBSS());
 				slp.update(getBSS());
-				//cvp.update();
+				cvp.update(getBSS());
 			}
 		};
 		tp.addChangeListener(changeListener);

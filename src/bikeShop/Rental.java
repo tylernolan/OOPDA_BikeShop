@@ -30,6 +30,12 @@ public class Rental implements Serializable{
 		this.timeOfRental = timeOfRental;
 		this.timeItemIsDue = addXDaysToTimeOfRental(rentalTerm);
 	}
+	public Rental(Customer rentee, Item item, int rentalTerm) {
+		this.rentee = rentee;
+		this.item = item;
+		this.timeOfRental = new Date();
+		this.timeItemIsDue = addXDaysToTimeOfRental(rentalTerm);
+	}
 	private long getDateDifference(Date startDate, Date endDate)
 	{
 		return TimeUnit.DAYS.convert(startDate.getTime()-endDate.getTime(), TimeUnit.MILLISECONDS);

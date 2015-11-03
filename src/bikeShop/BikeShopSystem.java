@@ -32,18 +32,16 @@ public class BikeShopSystem implements Serializable{
 	}
 	/**
 	 * Generates a receipt object 
+	 * @deprecated
 	 * @param items the items in the customer's order
 	 * @param customer the customer purchasing the item
 	 * @return the receipt object
 	 */
-	public Receipt generateReceipt(HashMap<Item, Integer> items, Customer customer)
+	public Receipt generateReceipt(HashMap<Item, Integer> items, Customer customer) 
 	{
 		Receipt receipt = new Receipt(items, customer);
 		return receipt;
 	}
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 	public void returnItem(Customer c, Rental r)
 	{
 		double amtDue = c.returnItem(r);
@@ -55,12 +53,6 @@ public class BikeShopSystem implements Serializable{
 		c.rentItem(i, r);
 		return r;
 	}
-=======
->>>>>>> parent of 43b4765... added methods for rentals to BikeShopSystem. Added code to CustomerViewerPanel. Deprecated GenerateReceipt() in bikeshopsystem. Changed the way Rentals are stored in customer objects.
-=======
->>>>>>> parent of 43b4765... added methods for rentals to BikeShopSystem. Added code to CustomerViewerPanel. Deprecated GenerateReceipt() in bikeshopsystem. Changed the way Rentals are stored in customer objects.
-=======
->>>>>>> parent of 43b4765... added methods for rentals to BikeShopSystem. Added code to CustomerViewerPanel. Deprecated GenerateReceipt() in bikeshopsystem. Changed the way Rentals are stored in customer objects.
 	/**
 	 * rents an item to a customer for a term, adds the rental to our arraylist of ongoing rentals. 
 	 * @param rentee the person renting the item
