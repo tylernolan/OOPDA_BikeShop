@@ -31,9 +31,11 @@ public class AddCustomerPanel extends JPanel implements Updateable{
 	{
 		public void actionPerformed(ActionEvent e)
 		{
-			if(!bss.newCustomer(nameField.getText()))
-			{
-				JOptionPane.showMessageDialog(null, "Invalid name, please supply both a first and last name", "Invalid Name", JOptionPane.ERROR_MESSAGE);
+			try {
+				bss.newCustomer(nameField.getText());
+			}
+			catch (CantCreateCustomerException exc){
+				JOptionPane.showMessageDialog(null, exc.getMessage(),"Invalid Name", JOptionPane.ERROR_MESSAGE);
 			}
 			
 		}

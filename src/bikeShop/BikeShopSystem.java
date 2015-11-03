@@ -75,10 +75,13 @@ public class BikeShopSystem implements Serializable{
 	 * @param thingsToOrder a hashmap of item:quantity pairs
 	 * @return an order object
 	 */
-	public Order orderBikes(HashMap<Item, Integer> thingsToOrder)
+	public void orderBikes(HashMap<Item, Integer> thingsToOrder)
 	{
-		Order order = new Order(thingsToOrder);
-		return order;
+		for(Item item:thingsToOrder.keySet()){
+			for(int i=0;i<=thingsToOrder.get(item);i++){
+				addItemToInventory(item);
+			}
+		}
 	}
 	public HashSet<Customer> getCustomers()
 	{
@@ -123,17 +126,23 @@ public class BikeShopSystem implements Serializable{
 	 * @param name the name of the customer, with first and last name seperated by a space. 
 	 * @return true if the customer was added successfully.
 	 */
-	public boolean newCustomer(String name)
+	public void newCustomer(String name) throws CantCreateCustomerException
 	{
 		if(name.split(" ").length == 2)
 		{
+			for (Customer c : customers)
+				if (c.getName().equals(name)) {
+					throw new CantCreateCustomerException("Already has a customer by that name");
+				}
 			customers.add(new Customer(name));
 			System.out.println(customers);
-			return true;
+			
 		}
-		else
+		
+		else 
 		{
-			return false; //must supply a first and last name.
+			throw new CantCreateCustomerException("Supply both first and last name");
+			
 		}
 	}
 	/**
@@ -188,5 +197,13 @@ public class BikeShopSystem implements Serializable{
         }
 		System.out.println(systemToLoad.getCustomers());
 		return systemToLoad;
+	}
+	public HashSet<Item> generateOrderableItems()
+	{
+		HashSet<Item> ret = new HashSet<>();
+		ret.add(new Accessory(5,10,50,"helmet"));
+		ret.add(new Bike(10,15,500,"bike", "coolBike2000","2000","0922000",Gender.MALE));
+		ret.add(new Bike(20,25,1000,"fancy bike", "Awesome Bike 2001","2001","0922000",Gender.FEMALE));
+		return ret;
 	}
 }

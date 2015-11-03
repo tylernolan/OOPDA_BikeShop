@@ -15,20 +15,20 @@ public class CustomerViewerPanel extends JPanel implements Updateable{
 		setLayout(new FlowLayout());
 		customers = new JComboBox(bss.getCustomers().toArray());
 		
-		JFrame customerDataFrame = new JFrame();
+		JPanel customerDataPanel = new JPanel();
 		customerName = new JLabel("");
 		customerBalance = new JLabel("");
 		customerRentedItems = new JComboBox();
 		customerRentedItems.addItemListener(new CustomerBoxListener());
 		
-		customerDataFrame.add(customerName);
-		customerDataFrame.add(customerBalance);
-		customerDataFrame.add(customerRentedItems);
+		customerDataPanel.add(customerName);
+		customerDataPanel.add(customerBalance);
+		customerDataPanel.add(customerRentedItems);
 		
 		JButton returnItemButton = new JButton("Return Item");
 		
 		this.add(customers);
-		this.add(customerDataFrame);
+		this.add(customerDataPanel);
 		this.add(returnItemButton);
 	}
 	public void update(BikeShopSystem bss)

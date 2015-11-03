@@ -35,7 +35,7 @@ public class OrderItemPanel extends JPanel{
 		
 		JPanel itemPanel = new JPanel();
 		JLabel itemLabel = new JLabel("Items: ");
-		itemsAvailable = new JComboBox();
+		itemsAvailable = new JComboBox(bss.generateOrderableItems().toArray());
 		
 		itemPanel.add(itemLabel);
 		itemPanel.add(itemsAvailable);
