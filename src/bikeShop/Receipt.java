@@ -88,10 +88,11 @@ public class Receipt {
 				retString += i.toString() + "   Deposit Due: $" + i.getItem().getRentalDeposit() + "\n   Return Date: " + i.getDueDate().toString() + "\n";
 				totalDeposit += i.getItem().getRentalDeposit();
 			}
+		double rentalCosts = 0;
+		double returnedDeposits = 0;
 		if (itemsReturned.size() > 0)
 		{
 			retString += "Returned Items: \n";
-			double rentalCosts = 0;
 			for (Rental rental : itemsReturned)
 			{
 				if (rental.isOverdue())
@@ -99,11 +100,13 @@ public class Receipt {
 					retString += "Overdue: ";
 				}
 				retString += rental.toString() +" "+ String.valueOf(rental.getAmountOwed())+"\n";
-				rentalCosts += rental.getAmountOwed();
+				retString += String.valueOf(rental.getAmountOwed()) + "\n";
+				returnedDeposits += rental.getItem().getRentalDeposit();
 			}
 		}
 		retString += "Total Purchases: $" + roundDecimal(this.totalPrice) + "\n";
-		retString += 
+		retString += "Total Rentals Due: $" + roundDecimal(rentalCosts);
+		retString += "Total Deposits Returned $" + roundDecimal(returnedDeposits);
 		retString += "Deposit Due: $" + roundDecimal(totalDeposit);
 		retString += "\n______________\n";
 		retString += "Thank you for shopping with us, " + this.customer + "\n";

@@ -66,8 +66,15 @@ public class RentItemPanel extends JPanel implements Updateable{
 		{
 			selectedCustomer = (Customer)customers.getSelectedItem();
 			selectedItem = (Item)items.getSelectedItem();
-			int rentalTerm = Integer.parseInt(rentalTermBox.getText());
-			bss.generateRental(selectedCustomer, selectedItem, rentalTerm);
+			try{
+				int rentalTerm = Integer.parseInt(rentalTermBox.getText());
+				bss.generateRental(selectedCustomer, selectedItem, rentalTerm);
+			}
+			catch(NumberFormatException nfe)
+			{
+				JOptionPane.showMessageDialog(null, "Please enter a number in the term box","Invalid Term", JOptionPane.ERROR_MESSAGE);
+			}
+			
 			
 		}
 	}

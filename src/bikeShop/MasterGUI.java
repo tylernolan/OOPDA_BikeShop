@@ -31,6 +31,8 @@ public class MasterGUI extends JFrame {
 		tp.addTab("Add Customer", acp);
 		tp.addTab("Active Receipt", arp);
 		tp.addTab("Save/Load", slp);
+		tp.addTab("Customer Viewer", cvp);
+		this.setMinimumSize(new Dimension(800,600));
 		this.add(tp);
 		ChangeListener changeListener = new ChangeListener(){
 			public void stateChanged(ChangeEvent changeEvent)

@@ -14,18 +14,20 @@ public class CustomerViewerPanel extends JPanel implements Updateable{
 	{
 		setLayout(new FlowLayout());
 		customers = new JComboBox(bss.getCustomers().toArray());
+		customers.addItemListener(new CustomerBoxListener());
 		
 		JPanel customerDataPanel = new JPanel();
 		customerName = new JLabel("");
 		customerBalance = new JLabel("");
 		customerRentedItems = new JComboBox();
-		customerRentedItems.addItemListener(new CustomerBoxListener());
+		
 		
 		customerDataPanel.add(customerName);
 		customerDataPanel.add(customerBalance);
 		customerDataPanel.add(customerRentedItems);
 		
 		JButton returnItemButton = new JButton("Return Item");
+		returnItemButton.addActionListener(new ReturnItemListener());
 		
 		this.add(customers);
 		this.add(customerDataPanel);

@@ -42,10 +42,13 @@ public class BikeShopSystem implements Serializable{
 		Receipt receipt = new Receipt(items, customer);
 		return receipt;
 	}
-	public void returnItem(Customer c, Rental r)
+	public double returnItem(Customer c, Rental r)
 	{
+		if (this.currentReceipt == null) this.currentReceipt = new Receipt(c);
+		this.inventory.add(r.getItem());
 		double amtDue = c.returnItem(r);
-		//TODO: this.currentReceipt.returnItem()
+		this.currentReceipt.returnItem(r);
+		return amtDue;
 	}
 	public Rental rentItem(Customer c, Item i, int term)
 	{
@@ -64,6 +67,7 @@ public class BikeShopSystem implements Serializable{
 	{
 		if (this.currentReceipt == null) this.currentReceipt = new Receipt(rentee);
 		Rental rental =  new Rental(rentee, item, rentalTerm, new Date());
+		this.inventory.remove(item);
 		currentReceipt.addRentalItem(rental);
 		rentee.rentItem(item, rental);
 		this.ongoingRentals.add(rental);
