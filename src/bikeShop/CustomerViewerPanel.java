@@ -2,12 +2,17 @@ package bikeShop;
 import java.awt.*;
 import javax.swing.*;
 <<<<<<< HEAD
+<<<<<<< HEAD
 public class CustomerViewerPanel extends JPanel implements Updateable{
 	private BikeShopSystem bss;
 	private JComboBox<Rental> customerRentedItems;
 	private JLabel customerName;
 	private JLabel customerBalance;
 	private JComboBox<Customer> customers;
+=======
+public class CustomerViewerPanel extends JPanel{
+	BikeShopSystem bss;
+>>>>>>> parent of 43b4765... added methods for rentals to BikeShopSystem. Added code to CustomerViewerPanel. Deprecated GenerateReceipt() in bikeshopsystem. Changed the way Rentals are stored in customer objects.
 =======
 public class CustomerViewerPanel extends JPanel{
 	BikeShopSystem bss;
@@ -26,6 +31,7 @@ public class CustomerViewerPanel extends JPanel{
 		customerDataFrame.add(customerRentedItems);
 		
 		this.add(customers);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		this.add(customerDataFrame);
 		this.add(returnItemButton);
@@ -53,6 +59,10 @@ public class CustomerViewerPanel extends JPanel{
 			bss.returnItem((Customer)customers.getSelectedItem(),(Rental)customerRentedItems.getSelectedItem());
 			update(bss);
 		}
+=======
+		this.add(customerDataFrame)
+		
+>>>>>>> parent of 43b4765... added methods for rentals to BikeShopSystem. Added code to CustomerViewerPanel. Deprecated GenerateReceipt() in bikeshopsystem. Changed the way Rentals are stored in customer objects.
 =======
 		this.add(customerDataFrame)
 		
