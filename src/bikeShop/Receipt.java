@@ -1,5 +1,12 @@
 package bikeShop;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.PrintStream;
+import java.io.PrintWriter;
+import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -8,7 +15,9 @@ import java.util.HashSet;
  * @author Tyler
  *
  */
-public class Receipt {
+public class Receipt implements Serializable{
+	private static int recieptNumber = 0;
+	private static final long serialVersionUID = -1411947390071214055L;
 	private HashMap<Item, Integer> items = new HashMap<>();
 	private double totalPrice;
 	private Customer customer;
@@ -21,11 +30,13 @@ public class Receipt {
 	 */
 	public Receipt(HashMap<Item, Integer> items, Customer customer)
 	{
+		recieptNumber++;
 		this.items = items;
 		this.customer = customer;
 	}
 	public Receipt(Customer customer)
 	{
+		recieptNumber++;
 		this.customer = customer;
 	}
 	public void returnItem(Rental rental)
@@ -66,6 +77,12 @@ public class Receipt {
 	 */
 	public String generateReceipt()
 	{
+		try (PrintWriter writer = new PrintWriter(new FileOutputStream(String.valueOf(recieptNumber)+customer.getName()+".txt"))){
+			
+			writer.write(this.toString());
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 		return this.toString();
 	}
 	/**
@@ -105,8 +122,8 @@ public class Receipt {
 			}
 		}
 		retString += "Total Purchases: $" + roundDecimal(this.totalPrice) + "\n";
-		retString += "Total Rentals Due: $" + roundDecimal(rentalCosts);
-		retString += "Total Deposits Returned $" + roundDecimal(returnedDeposits);
+		retString += "Total Rentals Due: $" + roundDecimal(rentalCosts)+"\n";
+		retString += "Total Deposits Returned $" + roundDecimal(returnedDeposits)+"\n";
 		retString += "Deposit Due: $" + roundDecimal(totalDeposit);
 		retString += "\n______________\n";
 		retString += "Thank you for shopping with us, " + this.customer + "\n";

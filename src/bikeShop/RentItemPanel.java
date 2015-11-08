@@ -69,6 +69,7 @@ public class RentItemPanel extends JPanel implements Updateable{
 			try{
 				int rentalTerm = Integer.parseInt(rentalTermBox.getText());
 				bss.generateRental(selectedCustomer, selectedItem, rentalTerm);
+				update(bss);
 			}
 			catch(NumberFormatException nfe)
 			{

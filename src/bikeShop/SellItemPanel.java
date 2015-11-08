@@ -63,8 +63,8 @@ public class SellItemPanel extends JPanel implements Updateable{
 			{
 				selectedCustomer = (Customer)customers.getSelectedItem();
 				selectedItem = (Item)items.getSelectedItem();
-				
 				bss.sellItem(selectedCustomer, selectedItem);
+				update(bss);
 				
 			}
 		}

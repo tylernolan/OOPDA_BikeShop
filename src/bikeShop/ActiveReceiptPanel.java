@@ -37,7 +37,8 @@ public class ActiveReceiptPanel extends JPanel implements Updateable{
 	{
 		public void actionPerformed(ActionEvent e)
 		{
-			Receipt receipt = bss.checkout(); //maybe do something here to make a log of old receipts.
+			Receipt receipt = bss.checkout(); 
+			receipt.generateReceipt();
 			update(bss);
 		}
 	}
