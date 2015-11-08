@@ -19,10 +19,15 @@ public class Customer implements Serializable{
 	 * 
 	 * @param name the customer's name
 	 */
-	public Customer(String name) {
-		this.name = name; //TODO: make NameErrorException and have the constructor throw it if the name isn't valid.
-		this.rentedItems = new ArrayList<Rental>();
-		this.accountBalance = 0;
+	public Customer(String name) throws CantCreateCustomerException{
+		if (name.split(" ").length < 2)
+			throw new CantCreateCustomerException();
+		else
+		{
+			this.name = name;
+			this.rentedItems = new ArrayList<Rental>();
+			this.accountBalance = 0;
+		}
 	}
 	public String getName() {
 		return name;
