@@ -50,8 +50,10 @@ public class BikeShopSystem implements Serializable{
 		this.currentReceipt.returnItem(r);
 		return amtDue;
 	}
+	@Deprecated
 	public Rental rentItem(Customer c, Item i, int term)
 	{
+		if (this.currentReceipt == null) this.currentReceipt = new Receipt(c);
 		Rental r = new Rental(c, i, term);
 		c.rentItem(i, r);
 		return r;

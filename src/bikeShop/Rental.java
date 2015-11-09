@@ -10,6 +10,7 @@ public class Rental implements Serializable{
 	private static final long serialVersionUID = -3280816519265694819L;
 	private Customer rentee;
 	private Item item;
+	private int term;
 	private Date timeOfRental;
 	private Date timeItemIsDue;
 	/**
@@ -29,16 +30,22 @@ public class Rental implements Serializable{
 		this.item = item;
 		this.timeOfRental = timeOfRental;
 		this.timeItemIsDue = addXDaysToTimeOfRental(rentalTerm);
+		this.term = rentalTerm;
 	}
 	public Rental(Customer rentee, Item item, int rentalTerm) {
 		this.rentee = rentee;
 		this.item = item;
 		this.timeOfRental = new Date();
 		this.timeItemIsDue = addXDaysToTimeOfRental(rentalTerm);
+		this.term = rentalTerm;
 	}
 	private long getDateDifference(Date startDate, Date endDate)
 	{
 		return TimeUnit.DAYS.convert(startDate.getTime()-endDate.getTime(), TimeUnit.MILLISECONDS);
+	}
+	public double getRentalCost()
+	{
+		return this.term * this.item.getDailyRentalFee();
 	}
 	/**
 	 * returns the amount the customer owes for the rental.
@@ -46,12 +53,10 @@ public class Rental implements Serializable{
 	 */
 	public double getAmountOwed()
 	{
-		double rate = item.getDailyRentalFee();
-		long timeSinceRented = getDateDifference(timeOfRental, new Date());
-		double amountDue = timeSinceRented * rate;
+		int amountDue = 0;
 		if(isOverdue())
 		{
-			amountDue *= LATECHARGE; //50% late fee
+			amountDue += LATECHARGE*getRentalCost()*getDateDifference(this.timeItemIsDue, new Date());
 		}
 		return amountDue;
 		

@@ -97,13 +97,13 @@ public class Receipt implements Serializable{
 			this.totalPrice += item.getPrice() * items.get(item);
 			retString += item.toString() + "\n   Quantity: " + items.get(item) + "\n   Price: $" + roundDecimal(item.getPrice() * items.get(item))+"\n";
 		}
-		double totalDeposit = 0;
+		double totalRentalCosts = 0;
 		if (rentItems.size() > 0)
 			retString += "Rentals: \n";
 			for (Rental i : rentItems)
 			{
-				retString += i.toString() + "   Deposit Due: $" + i.getItem().getRentalDeposit() + "\n   Return Date: " + i.getDueDate().toString() + "\n";
-				totalDeposit += i.getItem().getRentalDeposit();
+				retString += i.toString() + "   Deposit Due: $" + i.getItem().getRentalDeposit() +"\nCost: "+i.getRentalCost()+ "\n   Return Date: " + i.getDueDate().toString() + "\n";
+				totalRentalCosts += i.getItem().getRentalDeposit() + i.getRentalCost();
 			}
 		double rentalCosts = 0;
 		double returnedDeposits = 0;
@@ -124,7 +124,8 @@ public class Receipt implements Serializable{
 		retString += "Total Purchases: $" + roundDecimal(this.totalPrice) + "\n";
 		retString += "Total Rentals Due: $" + roundDecimal(rentalCosts)+"\n";
 		retString += "Total Deposits Returned $" + roundDecimal(returnedDeposits)+"\n";
-		retString += "Deposit Due: $" + roundDecimal(totalDeposit);
+		retString += "Rental Costs Due: $" + roundDecimal(totalRentalCosts)+ "\n";
+		retString += "Total: " + roundDecimal(totalRentalCosts + this.totalPrice);
 		retString += "\n______________\n";
 		retString += "Thank you for shopping with us, " + this.customer + "\n";
 		retString += new Date().toString();
