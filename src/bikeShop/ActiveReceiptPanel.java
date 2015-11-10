@@ -37,9 +37,14 @@ public class ActiveReceiptPanel extends JPanel implements Updateable{
 	{
 		public void actionPerformed(ActionEvent e)
 		{
+			try{
 			Receipt receipt = bss.checkout(); 
 			receipt.generateReceipt();
 			update(bss);
+			}
+			catch(NullPointerException exc){
+				;
+			}
 		}
 	}
 }
