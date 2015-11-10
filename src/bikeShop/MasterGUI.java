@@ -50,12 +50,6 @@ public class MasterGUI extends JFrame {
 		};
 		tp.addChangeListener(changeListener);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    this.addWindowListener(new java.awt.event.WindowAdapter() {
-	        public void windowClosing(WindowEvent winEvt) {
-	            bss.saveShopState();
-	            System.exit(0);
-	        }
-	    });
 		pack();
 		setVisible(true);
 	}
