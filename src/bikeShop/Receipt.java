@@ -125,7 +125,7 @@ public class Receipt implements Serializable{
 		retString += "Total Rentals Due: $" + roundDecimal(rentalCosts)+"\n";
 		retString += "Total Deposits Returned $" + roundDecimal(returnedDeposits)+"\n";
 		retString += "Rental Costs Due: $" + roundDecimal(totalRentalCosts)+ "\n";
-		retString += "Total: " + roundDecimal(totalRentalCosts + this.totalPrice);
+		retString += "\nTotal: $ " + roundDecimal(totalRentalCosts + this.totalPrice - returnedDeposits);
 		retString += "\n______________\n";
 		retString += "Thank you for shopping with us, " + this.customer + "\n";
 		retString += new Date().toString();

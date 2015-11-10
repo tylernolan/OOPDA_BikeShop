@@ -16,7 +16,6 @@ public class TestDriver {
 			
 		}
 		new MasterGUI(sys);
-		sys.saveShopState();
 		
 		System.out.println(sys.getCustomers().toString());
 		System.out.println(sys.getInventory().toString());
