@@ -55,16 +55,20 @@ public class OrderItemPanel extends JPanel{
 		
 	}
 	
-	private class SubmitButtonListener implements ActionListener
+	private class SubmitButtonListener implements ActionListener 
 	{
 		public void actionPerformed(ActionEvent e)
 		{
-			
+			try{
 			Item itemSelected = (Item) itemsAvailable.getSelectedItem();
 			int quantity = Integer.parseInt(quantityToAdd.getText());
 			HashMap<Item, Integer> order = new HashMap<Item, Integer>();
 			order.put(itemSelected, (Integer) quantity);
 			bss.orderBikes(order);
+			}
+			catch(NumberFormatException exc){
+				;
+			}
 			
 		}
 	}
