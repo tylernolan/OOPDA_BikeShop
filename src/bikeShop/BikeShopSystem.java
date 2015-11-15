@@ -98,13 +98,12 @@ public class BikeShopSystem implements Serializable{
 	public ArrayList<Item> getInventory()
 	{
 		ArrayList<Item> ret = new ArrayList<>();
-		for(Item i : this.inventory)
-		{
+		inventory.forEach(i -> {
 			if (!ret.contains(i))
 			{
 				ret.add(i);
 			}
-		}
+		});
 		return ret;
 	}
 	
