@@ -8,7 +8,7 @@ import java.util.HashMap;
 import javax.swing.*;
 
 
-public class OrderItemPanel extends JPanel{
+public class OrderItemPanel extends JPanel implements Updateable{
 	
 	
 	private JPanel itemPanel;
@@ -54,17 +54,20 @@ public class OrderItemPanel extends JPanel{
 		add(centerFrame, BorderLayout.CENTER);
 		
 	}
-	
+	public void update(BikeShopSystem bss)
+	{
+		this.bss = bss;
+	}
 	private class SubmitButtonListener implements ActionListener 
 	{
 		public void actionPerformed(ActionEvent e)
 		{
 			try{
-			Item itemSelected = (Item) itemsAvailable.getSelectedItem();
-			int quantity = Integer.parseInt(quantityToAdd.getText());
-			HashMap<Item, Integer> order = new HashMap<Item, Integer>();
-			order.put(itemSelected, (Integer) quantity);
-			bss.orderBikes(order);
+				Item itemSelected = (Item) itemsAvailable.getSelectedItem();
+				int quantity = Integer.parseInt(quantityToAdd.getText());
+				HashMap<Item, Integer> order = new HashMap<Item, Integer>();
+				order.put(itemSelected, (Integer) quantity);
+				bss.orderBikes(order);
 			}
 			catch(NumberFormatException exc){
 				;

@@ -218,9 +218,17 @@ public class BikeShopSystem implements Serializable{
 	public HashSet<Item> generateOrderableItems()
 	{
 		HashSet<Item> ret = new HashSet<>();
-		ret.add(new Accessory(5,10,50,"helmet"));
-		ret.add(new Bike(10,15,500,"bike", "coolBike2000","2000","0922000",Gender.MALE));
-		ret.add(new Bike(20,25,1000,"fancy bike", "Awesome Bike 2001","2001","0922000",Gender.FEMALE));
+		ret.add(new Accessory(5,10,50,"Helmet"));
+		ret.add(new Accessory(5,10,50,"Water Bottle"));
+		ret.add(new Bike(10,80,800,"Tandem Bike", "TB2015","2000","0951515",Gender.NEUTRAL));
+		ret.add(new Bike(10,15,150,"Children's Bike", "CB2015","2000","0951666",Gender.NEUTRAL));
+		ret.add(new Bike(10,50,500,"Road Bike Male", "RBY2015","2000","0922000",Gender.MALE));
+		ret.add(new Bike(10,75,700,"Mountain Bike Male", "MBY2015","2000","0922020",Gender.MALE));
+		ret.add(new Bike(10,65,600,"City Bike Male", "CBY2015","2000","0922570",Gender.MALE));
+		ret.add(new Bike(20,75,700,"Mountain Bike Female", "MBX2015","2001","0925000",Gender.FEMALE));
+		ret.add(new Bike(20,65,600,"City Bike Female", "CBX2015","2001","0922060",Gender.FEMALE));
+		ret.add(new Bike(20,65,600,"Road Bike Female", "RBX2015","2001","09562060",Gender.FEMALE));
+		
 		return ret;
 	}
 }

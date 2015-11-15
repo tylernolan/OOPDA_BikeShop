@@ -32,9 +32,10 @@ public class MasterGUI extends JFrame {
 		tp.addTab("Sell Item", sip);
 		tp.addTab("Rent Item", rip);
 		tp.addTab("Add Customer", acp);
+		tp.addTab("Customer Viewer", cvp);
 		tp.addTab("Active Receipt", arp);
 		tp.addTab("Save/Load", slp);
-		tp.addTab("Customer Viewer", cvp);
+		tp.addTab("Order Items", oip);
 		this.setMinimumSize(new Dimension(800,600));
 		this.add(tp);
 		ChangeListener changeListener = new ChangeListener(){
@@ -46,6 +47,7 @@ public class MasterGUI extends JFrame {
 				acp.update(getBSS());
 				slp.update(getBSS());
 				cvp.update(getBSS());
+				oip.update(getBSS());
 			}
 		};
 		tp.addChangeListener(changeListener);

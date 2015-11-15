@@ -20,6 +20,7 @@ public abstract class Item implements Serializable{
 	 */
 	public Item(double dailyRentalFee, double RentalCharge, double price, String name)
 	{
+		//I don't think RentalCharge is used for anything. Possibly removable. 
 		this.isRented = false;
 		this.dailyRentalFee = dailyRentalFee;
 		this.rentalDeposit = RentalCharge;
