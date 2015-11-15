@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 /**
  * the system that handles the interactions between the various objects used in the bike shop.
  * @author Tyler
@@ -95,8 +97,17 @@ public class BikeShopSystem implements Serializable{
 	}
 	public ArrayList<Item> getInventory()
 	{
-		return this.inventory;
+		ArrayList<Item> ret = new ArrayList<>();
+		for(Item i : this.inventory)
+		{
+			if (!ret.contains(i))
+			{
+				ret.add(i);
+			}
+		}
+		return ret;
 	}
+	
 	/**
 	 * adds an item to the shop's inventory
 	 * @param itemToAdd the item to add

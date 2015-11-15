@@ -26,6 +26,10 @@ public abstract class Item implements Serializable{
 		this.name = name;
 		this.price = price;
 	}
+	public String getName()
+	{
+		return this.name;
+	}
 	public boolean isRented()
 	{
 		return this.isRented;
@@ -68,6 +72,25 @@ public abstract class Item implements Serializable{
 	@Override public String toString()
 	{
 		return this.name;
+	}
+	@Override public boolean equals(Object obj)
+	{
+		try
+		{
+			Item i = (Item)obj;
+			if (i.getName() == this.getName())
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		catch(NullPointerException e)
+		{
+			return false;
+		}
 	}
 
 }
