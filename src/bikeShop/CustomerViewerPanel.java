@@ -36,6 +36,11 @@ public class CustomerViewerPanel extends JPanel implements Updateable{
 	public void update(BikeShopSystem bss)
 	{
 		this.bss = bss;
+		this.customers.removeAllItems();
+		customers.removeAllItems();
+		for (Customer c : bss.getCustomers()){
+			customers.addItem(c);
+		}
 		customerRentedItems.removeAllItems();
 		customerName.setText("");
 		customerBalance.setText("");

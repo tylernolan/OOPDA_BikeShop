@@ -7,8 +7,10 @@ import java.awt.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
 
 public class MasterGUI extends JFrame {
+	private ArrayList<Updateable> panels = new ArrayList<>();;
 	BikeShopSystem bss;
 	SellItemPanel sip;
 	AddCustomerPanel acp;
@@ -28,7 +30,6 @@ public class MasterGUI extends JFrame {
 		arp = new ActiveReceiptPanel(bss); //panel with checkout button, textbox with active receipt.
 		oip = new OrderItemPanel(bss); //panel for ordering new items for the inventory.
 		cvp = new CustomerViewerPanel(bss); //panel for viewing customer data, rentals, balance, etc.
-		tp.addTab("Order Item", oip);
 		tp.addTab("Sell Item", sip);
 		tp.addTab("Rent Item", rip);
 		tp.addTab("Add Customer", acp);
@@ -36,18 +37,18 @@ public class MasterGUI extends JFrame {
 		tp.addTab("Active Receipt", arp);
 		tp.addTab("Save/Load", slp);
 		tp.addTab("Order Items", oip);
+		panels.add(oip);
+		panels.add(sip);
+		panels.add(rip);
+		panels.add(acp);
+		panels.add(cvp);
+		panels.add(arp);
 		this.setMinimumSize(new Dimension(800,600));
 		this.add(tp);
 		ChangeListener changeListener = new ChangeListener(){
 			public void stateChanged(ChangeEvent changeEvent)
 			{
-				sip.update(getBSS());
-				rip.update(getBSS());
-				arp.update(getBSS());
-				acp.update(getBSS());
-				slp.update(getBSS());
-				cvp.update(getBSS());
-				oip.update(getBSS());
+				for(Updateable p : panels) p.update(bss);
 			}
 		};
 		tp.addChangeListener(changeListener);
